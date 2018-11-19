@@ -1,4 +1,4 @@
-target/
+ï»¿target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -54,8 +54,8 @@ dist
 .mvn/
 *.cmd
 mvnw
-# *.a    # ºöÂÔËùÓĞ .a ½áÎ²µÄÎÄ¼ş
-# !lib.a  # µ« lib.a ³ıÍâ
-# /TODO   #½ö½öºöÂÔÏîÄ¿¸ùÄ¿Â¼ÏÂµÄ TODO ÎÄ¼ş£¬²»°üÀ¨ subdir/TODO
-# build/  # ºöÂÔ build/ Ä¿Â¼ÏÂµÄËùÓĞÎÄ¼ş
-# doc/*.txt # »áºöÂÔ doc/notes.txt µ«²»°üÀ¨ doc/server/arch.txt
+# *.a    # å¿½ç•¥æ‰€æœ‰ .a ç»“å°¾çš„æ–‡ä»¶
+# !lib.a  # ä½† lib.a é™¤å¤–
+# /TODO   #ä»…ä»…å¿½ç•¥é¡¹ç›®æ ¹ç›®å½•ä¸‹çš„ TODO æ–‡ä»¶ï¼Œä¸åŒ…æ‹¬ subdir/TODO
+# build/  # å¿½ç•¥ build/ ç›®å½•ä¸‹çš„æ‰€æœ‰æ–‡ä»¶
+# doc/*.txt # ä¼šå¿½ç•¥ doc/notes.txt ä½†ä¸åŒ…æ‹¬ doc/server/arch.txt

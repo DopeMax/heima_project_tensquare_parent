@@ -2,12 +2,6 @@ package entity;
 
 import java.io.Serializable;
 
-/**
- * Create with www.dezhe.com
- *
- * @Author 德哲
- * @Date 2018/9/24 12:23
- */
 public class StatusCode implements Serializable {
 
     public static final int OK = 20000; //成功

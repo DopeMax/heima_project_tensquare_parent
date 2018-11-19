@@ -4,10 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Create with www.dezhe.com
- *                             -----------  返回分页的结果集封装类
- * @Author 德哲
- * @Date 2018/9/11 21:18
+ * 返回分页的结果集封装类
  */
 public class PageResult<T> implements Serializable {
 

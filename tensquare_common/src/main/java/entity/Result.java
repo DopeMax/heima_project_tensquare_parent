@@ -3,10 +3,7 @@ package entity;
 import java.io.Serializable;
 
 /**
- * Create with www.dezhe.com
- *                             -----------  返回结果
- * @Author 德哲
- * @Date 2018/9/11 21:18
+ * 返回结果
  */
 public class Result implements Serializable {
 
@@ -20,6 +17,7 @@ public class Result implements Serializable {
 
     /**
      * 增删改方法用的
+     *
      * @param flag
      * @param code
      * @param message
@@ -32,6 +30,7 @@ public class Result implements Serializable {
 
     /**
      * 查询方法用的
+     *
      * @param flag
      * @param code
      * @param message
