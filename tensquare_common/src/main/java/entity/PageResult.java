@@ -1,12 +1,11 @@
 package entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * 返回分页的结果集封装类
  */
-public class PageResult<T> implements Serializable {
+public class PageResult<T> {
 
     private Long total; //总记录数
     private List<T> rows; //分页的结果集

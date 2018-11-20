@@ -1,11 +1,9 @@
 package entity;
 
-import java.io.Serializable;
-
 /**
  * 返回结果
  */
-public class Result implements Serializable {
+public class Result {
 
     private boolean flag; //是否成功
     private Integer code; //状态码
