@@ -10,10 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Create with www.dezhe.com
- *
- * @Author 德哲
- * @Date 2018/9/28 20:43
+
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = BaseApplication.class)

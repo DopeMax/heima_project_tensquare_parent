@@ -16,11 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Create with www.dezhe.com
- *
- * @Author 德哲
- * @Date 2018/9/24 16:42
- *
  * 标签的业务层
  */
 @Service

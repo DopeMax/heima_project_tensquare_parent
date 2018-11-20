@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Create with www.dezhe.com
- *
- * @Author 德哲
- * @Date 2018/9/28 21:00
- *
  * 标签控制器
  */
 @RestController

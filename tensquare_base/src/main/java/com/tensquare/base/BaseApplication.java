@@ -6,11 +6,6 @@ import org.springframework.context.annotation.Bean;
 import utils.IdWorker;
 
 /**
- * Create with www.dezhe.com
- *
- * @Author 德哲
- * @Date 2018/9/28 20:25
- *
  * 基础微服务的启动类
  */
 @SpringBootApplication
