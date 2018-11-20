@@ -25,6 +25,6 @@ public class BaseApplication {
      */
     @Bean
     public IdWorker idWorker() {
-        return new IdWorker();
+        return new IdWorker(1,1);
     }
 }

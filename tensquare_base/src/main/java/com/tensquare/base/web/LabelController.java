@@ -28,7 +28,7 @@ public class LabelController {
      *
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public Result findAll() {
         List<Label> labels = labelService.findAll();
         return new Result(true, StatusCode.OK, "查询成功", labels);
@@ -40,7 +40,7 @@ public class LabelController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public Result findById(@PathVariable("id") String id) {
         Label label = labelService.findById(id);
         return new Result(true, StatusCode.OK, "查询id成功", label);
@@ -52,7 +52,7 @@ public class LabelController {
      * @param label
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public Result save(@RequestBody Label label) {
         labelService.save(label);
         return new Result(true, StatusCode.OK, "保存成功");
@@ -64,7 +64,7 @@ public class LabelController {
      * @param label
      * @return
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @PutMapping(value = "/{id}")
     public Result update(@PathVariable("id") String id, @RequestBody Label label) {
         label.setId(id);
         labelService.update(label);
@@ -77,7 +77,7 @@ public class LabelController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable("id") String id) {
         labelService.delete(id);
         return new Result(true, StatusCode.OK, "删除成功");
@@ -92,7 +92,7 @@ public class LabelController {
     @PostMapping("/search")
     public Result findSearch(@RequestBody Label label) {
         List<Label> list = labelService.findSearch(label);
-        return new Result(true, StatusCode.OK, "查询成功");
+        return new Result(true, StatusCode.OK, "查询成功",list);
 
     }
 
