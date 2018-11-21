@@ -196,7 +196,6 @@ public class RecruitService {
 
     /**
      * 查询最新职位
-     *
      * @return
      */
     public List<Recruit> newList() {

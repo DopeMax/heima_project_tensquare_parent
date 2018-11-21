@@ -121,7 +121,6 @@ public class RecruitController {
 
     /**
      * 最新职位
-     *
      * @return
      */
     @GetMapping("/search/newlist")

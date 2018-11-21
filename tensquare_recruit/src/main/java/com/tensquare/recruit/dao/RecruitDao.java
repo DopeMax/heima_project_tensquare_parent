@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface RecruitDao extends JpaRepository<Recruit,String>,JpaSpecificationExecutor<Recruit>{
     /**
-     * 根据状态查询职位，时间排序
+     * 查询最新职位列表(按创建日期降序排序)
      * @param state
      * @return
      */
