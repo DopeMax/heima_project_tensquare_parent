@@ -19,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import util.IdWorker;
 
 import com.tensquare.article.dao.ArticleDao;
@@ -31,6 +32,7 @@ import com.tensquare.article.pojo.Article;
  *
  */
 @Service
+@Transactional
 public class ArticleService {
 
 	@Autowired
@@ -172,6 +174,26 @@ public class ArticleService {
 			}
 		};
 
+	}
+
+	/**
+	 * 文章审核
+	 *
+	 * @param id
+	 * @return
+	 */
+	public void examine(String id) {
+		articleDao.examine(id);
+	}
+
+	/**
+	 * 点赞
+	 *
+	 * @param id
+	 * @return
+	 */
+	public void updateThumbup(String id) {
+		articleDao.updateThumbup(id);
 	}
 
 }

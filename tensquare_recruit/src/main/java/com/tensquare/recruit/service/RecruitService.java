@@ -19,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import util.IdWorker;
 
 import com.tensquare.recruit.dao.RecruitDao;
@@ -30,6 +31,7 @@ import com.tensquare.recruit.pojo.Recruit;
  * @author Administrator
  */
 @Service
+@Transactional
 public class RecruitService {
 
     @Autowired
