@@ -4,7 +4,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+
 
 /**
  * 吐槽实体
