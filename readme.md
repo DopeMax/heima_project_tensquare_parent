@@ -22,4 +22,6 @@ spring全家桶推荐的插件配置
         </snapshots>
     </pluginRepository>
 </pluginRepositories>
-```
+```     
+>十次方00、总目录: 
+https://blog.csdn.net/amingccc/article/details/84260613
