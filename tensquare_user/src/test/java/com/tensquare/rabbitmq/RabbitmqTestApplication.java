@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @created 2018-11-25-15:52.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = UserApplication.class)
+@SpringBootTest
 public class RabbitmqTestApplication {
     @Autowired
     private RabbitTemplate rabbitTemplate;
