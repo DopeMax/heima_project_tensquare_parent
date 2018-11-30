@@ -78,7 +78,6 @@ public class SpitController {
 
     /**
      * 根据上级ID查询吐槽分页数据
-     *
      * @param page
      * @param size
      * @return
@@ -91,7 +90,6 @@ public class SpitController {
 
     /**
      * 点赞
-     *
      * @param id
      * @return
      */

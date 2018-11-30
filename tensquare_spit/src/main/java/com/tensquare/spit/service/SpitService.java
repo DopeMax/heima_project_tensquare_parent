@@ -56,12 +56,10 @@ public class SpitService {
      *
      * @param spit
      */
-
     public void add(Spit spit) {
        /* //主键值
         spit.set_id(idWorker.nextId() + "");
         spitDao.save(spit);*/
-
 
         spit.set_id(idWorker.nextId() + "");
         spit.setPublishtime(new Date());//发布日期
@@ -116,7 +114,6 @@ public class SpitService {
 
     /**
      * 点赞
-     *
      * @param id
      */
     public void updateThumbup(String id) {
