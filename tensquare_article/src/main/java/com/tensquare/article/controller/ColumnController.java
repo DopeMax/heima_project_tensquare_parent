@@ -4,12 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.tensquare.article.pojo.Column;
 import com.tensquare.article.service.ColumnService;
@@ -20,7 +15,6 @@ import entity.StatusCode;
 /**
  * 控制器层
  * @author Administrator
- *
  */
 @RestController
 @CrossOrigin
@@ -78,7 +72,7 @@ public class ColumnController {
 	 * 增加
 	 * @param column
 	 */
-	@RequestMapping(method=RequestMethod.POST)
+	@PostMapping
 	public Result add(@RequestBody Column column  ){
 		columnService.add(column);
 		return new Result(true,StatusCode.OK,"增加成功");
@@ -104,5 +98,10 @@ public class ColumnController {
 		columnService.deleteById(id);
 		return new Result(true,StatusCode.OK,"删除成功");
 	}
-	
+
+	@GetMapping("/article/{articleid}")
+	public Result findByArticleid(@PathVariable String articleid){
+		return new Result(true,StatusCode.OK,"查询成功",columnService.findByArticleId(articleid));
+
+	}
 }

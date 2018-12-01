@@ -11,6 +11,7 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,11 +27,10 @@ import com.tensquare.article.pojo.Column;
 
 /**
  * 服务层
- * 
  * @author Administrator
- *
  */
 @Service
+@Transactional
 public class ColumnService {
 
 	@Autowired
@@ -146,4 +146,7 @@ public class ColumnService {
 
 	}
 
+	public List<Column> findByArticleId(String articleid) {
+		return columnDao.findByArticleId(articleid);
+	}
 }
