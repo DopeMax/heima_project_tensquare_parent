@@ -19,6 +19,6 @@ public class Comment implements Serializable {
     private String articleid;
     private String content;
     private String userid;
-    private String parentid;
+    private String parentid;//如果为0表示文章的顶级评论
     private Date publishdate;
 }

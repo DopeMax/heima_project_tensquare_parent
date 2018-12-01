@@ -16,8 +16,6 @@ import java.io.Serializable;
 public class Article implements Serializable {
     @Id
     private String id;
-
-
     /**
      * 考虑3个问题
      * - 是否索引，就是看该域是否能被搜索
@@ -31,5 +29,4 @@ public class Article implements Serializable {
     private String content;
     //审核状态
     private String state;
-
 }

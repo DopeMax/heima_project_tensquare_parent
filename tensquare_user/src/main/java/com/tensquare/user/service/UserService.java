@@ -10,6 +10,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
 
+import io.netty.util.internal.StringUtil;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import org.springframework.util.StringUtils;
 import util.IdWorker;
 
 import com.tensquare.user.dao.UserDao;
@@ -94,7 +96,15 @@ public class UserService {
      *
      * @param user
      */
-    public void add(User user) {
+    public void add(User user/*, String checkcode*/) {
+      /*  //判断验证码是否争取,提取系统正确的验证码
+        String syscode = (String) redisTemplate.opsForValue().get("checkcode_" + user.getMobile());
+        if (StringUtils.isEmpty(syscode)){
+            throw new RuntimeException("请点击获取短信验证码");
+        }
+        if (!syscode.equals(checkcode)){
+            throw new RuntimeException("验证码输入不正确");
+        }*/
         user.setId(idWorker.nextId() + "");
         user.setFollowcount(0);//关注数
         user.setFanscount(0);//粉丝数
@@ -193,12 +203,13 @@ public class UserService {
 
         //向缓存中放一份
         redisTemplate.opsForValue().set("checkcode_" + mobile, checkcode, 10, TimeUnit.MINUTES);
+        //3.将验证码和手机号发动到rabbitMQ中
         Map<String, String> map = new HashMap<>();
         map.put("mobile", mobile);
         map.put("checkcode", checkcode);
         //给用户发一份
         rabbitTemplate.convertAndSend("sms", map);
         //在控制台显示一份（方便测试）
-        System.out.println("验证码checkcode的值是：---" + checkcode + "，当前方法=UserService.sendSms()");
+        System.out.println(mobile + "的验证码checkcode是：---" + checkcode + "，当前方法=UserService.sendSms()");
     }
 }

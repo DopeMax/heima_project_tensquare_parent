@@ -1,23 +1,29 @@
 package com.tensquare.article.service;
 
 import com.tensquare.article.dao.ArticleDao;
+import com.tensquare.article.dao.CommentDao;
 import com.tensquare.article.pojo.Article;
+import com.tensquare.article.pojo.Comment;
+import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import util.IdWorker;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,6 +43,11 @@ public class ArticleService {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    private CommentDao commentDao;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     /**
      * 查询全部列表
@@ -210,4 +221,45 @@ public class ArticleService {
         articleDao.updateThumbup(id);
     }
 
+    /**
+     * 增加评论
+     *
+     * @param articleId
+     * @param comment
+     */
+    public void addComment(String articleId, Comment comment) {
+        comment.setArticleid(articleId);
+        comment.set_id(idWorker.nextId() + "");
+        comment.setPublishdate(new Date());
+
+        Article article = this.findById(articleId);
+        commentDao.save(comment);
+
+        //判断哪些是吐槽的评论
+        String parentid = comment.getParentid();
+
+        if (!StringUtils.isEmpty(parentid)) {
+            //更新该评论对应的吐槽的回复数+1
+            //1.创建查询对象
+            Query query = new Query();
+            query.addCriteria(Criteria.where("_id").is(parentid));
+            //2.创建修改对象
+            Update update = new Update();
+            update.inc("comment", 1);
+
+            mongoTemplate.updateFirst(query, update, "comment");
+        }
+    }
+
+    /**
+     * 删除评论
+     * @param articleId
+     * @param commentId
+     */
+    public void delComment(String articleId, String commentId) {
+        commentDao.deleteById(commentId);
+        Article article = articleDao.findById(articleId).get();
+        //文章评论数减一
+        article.setComment(article.getComment() - 1);
+    }
 }

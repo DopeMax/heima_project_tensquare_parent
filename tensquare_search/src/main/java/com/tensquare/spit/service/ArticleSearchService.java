@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import util.IdWorker;
 
 /**
@@ -13,6 +14,7 @@ import util.IdWorker;
  * @created 2018-11-24-20:07.
  */
 @Service
+@Transactional
 public class ArticleSearchService {
     @Autowired
     private ArticleSearchDao articleSearchDao;

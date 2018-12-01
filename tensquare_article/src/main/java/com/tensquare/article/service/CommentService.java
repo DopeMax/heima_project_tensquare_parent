@@ -1,23 +1,19 @@
 package com.tensquare.article.service;
 
-import com.tensquare.article.dao.CommentDao;
+import com.tensquare.article.dao.ArticleDao;
 import com.tensquare.article.dao.CommentDao;
 import com.tensquare.article.pojo.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import util.IdWorker;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 /**
  * 服务层
@@ -31,6 +27,10 @@ public class CommentService {
     private CommentDao commentDao;
     @Autowired
     private IdWorker idWorker;
+    @Autowired
+    private ArticleDao articleDao;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     public void add(Comment comment) {
         comment.set_id(idWorker.nextId() + "");
@@ -40,4 +40,5 @@ public class CommentService {
     public List<Comment> findByArticleId(String articleid) {
         return commentDao.findByArticleId(articleid);
     }
+
 }

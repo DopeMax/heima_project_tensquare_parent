@@ -17,13 +17,13 @@ public class Spit implements Serializable {
     @Id
     private String _id;
     private String content;
-    private Date publishtime;
+    private Date publishtime;//发布日期
     private String userid;
     private String nickname;
-    private Integer visits;
-    private Integer thumbup;
-    private Integer share;
-    private Integer comment;
+    private Integer visits;//浏览量
+    private Integer thumbup;//点赞数
+    private Integer share;//分享数
+    private Integer comment;//回复数
     private String state;
     private String parentid;
 }

@@ -129,4 +129,26 @@ public class SpitService {
         update.inc("thumbup", 1);
         mongoTemplate.updateFirst(query, update, "spit");
     }
+    /**
+     * 增加访问量
+     * @param id
+     */
+    public void addVisit(String id){
+        Query query =new Query();
+        query.addCriteria(Criteria.where("_id").is(id));
+        Update update = new Update();
+        update.inc("visits",1);
+        mongoTemplate.updateFirst(query,update,"spit");
+    }
+    /**
+     * 增加分享
+     * @param id
+     */
+    public void addShare(String id){
+        Query query =new Query();
+        query.addCriteria(Criteria.where("_id").is(id));
+        Update update = new Update();
+        update.inc("share",1);
+        mongoTemplate.updateFirst(query,update,"spit");
+    }
 }

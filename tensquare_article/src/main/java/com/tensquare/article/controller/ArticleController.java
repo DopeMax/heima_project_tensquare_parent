@@ -3,6 +3,7 @@ package com.tensquare.article.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.tensquare.article.pojo.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -111,6 +112,7 @@ public class ArticleController {
 
     /**
      * 文章审核
+     *
      * @param articleId
      * @return
      */
@@ -122,6 +124,7 @@ public class ArticleController {
 
     /**
      * 点赞
+     *
      * @param articleId
      * @return
      */
@@ -129,5 +132,29 @@ public class ArticleController {
     public Result updateThumbup(@PathVariable String articleId) {
         articleService.updateThumbup(articleId);
         return new Result(true, StatusCode.OK, "点赞成功");
+    }
+
+    /**
+     * 文章加评论
+     * @param articleId
+     * @param comment
+     * @return
+     */
+    @PostMapping("/comment/{articleId}")
+    public Result addComment(@PathVariable String articleId, @RequestBody Comment comment) {
+        articleService.addComment(articleId, comment);
+        return new Result(true, StatusCode.OK, "评论成功");
+    }
+
+    /**
+     * 文章删除评论
+     * @param articleId
+     * @param commentId
+     * @return
+     */
+    @DeleteMapping("/comment/{articleId}/{commentId}")
+    public Result delComment(@PathVariable String articleId, @PathVariable String commentId) {
+        articleService.delComment(articleId, commentId);
+        return new Result(true, StatusCode.OK, "删除成功");
     }
 }

@@ -107,4 +107,25 @@ public class SpitController {
         redisTemplate.opsForValue().set("thumbup_" + userid + "_" + id, "1");
         return new Result(true, StatusCode.OK, "点赞成功");
     }
+
+    /**
+     * 浏览量
+     * @param id
+     * @return
+     */
+    @PutMapping("/visited/{id}")
+    public Result addVisit(@PathVariable String id){
+        spitService.addVisit(id);
+        return  new Result(true, StatusCode.OK, "点赞成功");
+    }
+    /**
+     * 转发分享
+     * @param id
+     * @return
+     */
+    @PutMapping("/share/{id}")
+    public Result addShare(@PathVariable String id){
+        spitService.addShare(id);
+        return  new Result(true, StatusCode.OK, "分享成功");
+    }
 }

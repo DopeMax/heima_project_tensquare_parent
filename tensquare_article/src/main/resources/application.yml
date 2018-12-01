@@ -16,4 +16,4 @@ spring:
   data:
     mongodb:
       host: 192.168.1.194
-      database: recruitdb
+      database: articleComment
