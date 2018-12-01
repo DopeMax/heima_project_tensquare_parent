@@ -42,6 +42,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -59,7 +62,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
+            <!-- <version>${lombok.version}</version>-->
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -110,11 +113,5 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-    <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-            <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
-        </configuration>
-    </plugin>
+
 </project>

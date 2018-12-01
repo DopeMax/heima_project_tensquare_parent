@@ -13,11 +13,4 @@ import java.util.List;
  * @author Administrator
  */
 public interface ColumnDao extends JpaRepository<Column, String>, JpaSpecificationExecutor<Column> {
-    /**
-     * 根据文章ID查询评论列表
-     *
-     * @param articleid
-     * @return
-     */
-    public List<Column> findByArticleId(String articleid);
 }

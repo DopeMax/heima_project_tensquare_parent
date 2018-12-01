@@ -146,7 +146,4 @@ public class ColumnService {
 
 	}
 
-	public List<Column> findByArticleId(String articleid) {
-		return columnDao.findByArticleId(articleid);
-	}
 }

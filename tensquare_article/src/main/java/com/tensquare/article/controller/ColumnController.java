@@ -98,10 +98,4 @@ public class ColumnController {
 		columnService.deleteById(id);
 		return new Result(true,StatusCode.OK,"删除成功");
 	}
-
-	@GetMapping("/article/{articleid}")
-	public Result findByArticleid(@PathVariable String articleid){
-		return new Result(true,StatusCode.OK,"查询成功",columnService.findByArticleId(articleid));
-
-	}
 }
