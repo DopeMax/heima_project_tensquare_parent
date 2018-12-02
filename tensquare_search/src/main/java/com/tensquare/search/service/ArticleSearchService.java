@@ -1,7 +1,7 @@
-package com.tensquare.spit.service;
+package com.tensquare.search.service;
 
-import com.tensquare.spit.dao.ArticleSearchDao;
-import com.tensquare.spit.pojo.Article;
+import com.tensquare.search.dao.ArticleSearchDao;
+import com.tensquare.search.pojo.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

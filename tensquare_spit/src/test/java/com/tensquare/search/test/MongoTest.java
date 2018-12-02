@@ -1,4 +1,4 @@
-package com.tensquare.spit.test;
+package com.tensquare.search.test;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
@@ -25,7 +25,7 @@ public class MongoTest {
         //创建连接
         MongoDatabase spitdb = client.getDatabase("spitdb");
         //获取集合
-        MongoCollection<Document> spit = spitdb.getCollection("spit");
+        MongoCollection<Document> spit = spitdb.getCollection("search");
         //查询记录获取文档集合
         FindIterable<Document> documents = spit.find();
         //遍历数据
@@ -46,7 +46,7 @@ public class MongoTest {
         //创建连接
         MongoDatabase spitdb = client.getDatabase("spitdb");
         //获取集合
-        MongoCollection<Document> spit = spitdb.getCollection("spit");
+        MongoCollection<Document> spit = spitdb.getCollection("search");
         //查询记录获取文档集合
         FindIterable<Document> documents = spit.find();
         //遍历数据

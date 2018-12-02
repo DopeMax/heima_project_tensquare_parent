@@ -1,7 +1,7 @@
-package com.tensquare.spit.service;
+package com.tensquare.search.service;
 
-import com.tensquare.spit.dao.SpitDao;
-import com.tensquare.spit.pojo.Spit;
+import com.tensquare.search.dao.SpitDao;
+import com.tensquare.search.pojo.Spit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,8 +58,8 @@ public class SpitService {
      */
     public void add(Spit spit) {
        /* //主键值
-        spit.set_id(idWorker.nextId() + "");
-        spitDao.save(spit);*/
+        search.set_id(idWorker.nextId() + "");
+        spitDao.save(search);*/
 
         spit.set_id(idWorker.nextId() + "");
         spit.setPublishtime(new Date());//发布日期
@@ -74,7 +74,7 @@ public class SpitService {
             query.addCriteria(Criteria.where("_id").is(spit.getParentid()));
             Update update = new Update();
             update.inc("comment", 1);
-            mongoTemplate.updateFirst(query, update, "spit");
+            mongoTemplate.updateFirst(query, update, "search");
         }
         spitDao.save(spit);
     }
@@ -118,16 +118,16 @@ public class SpitService {
      */
     public void updateThumbup(String id) {
         //方法一：效率问题，每次都要查一下，在插值，访问数据2次。
-        /*Spit spit = spitDao.findById(id).get();
-        spit.setThumbup((spit.getThumbup() == null ? 0 : spit.getThumbup()) + 1);
-        spitDao.save(spit);*/
+        /*Spit search = spitDao.findById(id).get();
+        search.setThumbup((search.getThumbup() == null ? 0 : search.getThumbup()) + 1);
+        spitDao.save(search);*/
 
-        //方法二：使用mongo命令来实现db.spit.update({"_id":"1"},{$inc:{thumbup:Number:Int()}})
+        //方法二：使用mongo命令来实现db.search.update({"_id":"1"},{$inc:{thumbup:Number:Int()}})
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(id));
         Update update = new Update();
         update.inc("thumbup", 1);
-        mongoTemplate.updateFirst(query, update, "spit");
+        mongoTemplate.updateFirst(query, update, "search");
     }
     /**
      * 增加访问量
@@ -138,7 +138,7 @@ public class SpitService {
         query.addCriteria(Criteria.where("_id").is(id));
         Update update = new Update();
         update.inc("visits",1);
-        mongoTemplate.updateFirst(query,update,"spit");
+        mongoTemplate.updateFirst(query,update,"search");
     }
     /**
      * 增加分享
@@ -149,6 +149,6 @@ public class SpitService {
         query.addCriteria(Criteria.where("_id").is(id));
         Update update = new Update();
         update.inc("share",1);
-        mongoTemplate.updateFirst(query,update,"spit");
+        mongoTemplate.updateFirst(query,update,"search");
     }
 }

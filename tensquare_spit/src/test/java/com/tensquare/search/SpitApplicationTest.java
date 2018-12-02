@@ -1,4 +1,4 @@
-package com.tensquare.spit;
+package com.tensquare.search;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
@@ -26,7 +26,7 @@ public class SpitApplicationTest {
     public void MongoDBInsert() {
         MongoClient client = new MongoClient("192.168.1.194");//创建连接
         MongoDatabase spitdb = client.getDatabase("spitdb");//打开数据库
-        MongoCollection<Document> spit = spitdb.getCollection("spit");//获取集合
+        MongoCollection<Document> spit = spitdb.getCollection("search");//获取集合
         Map<String, Object> map = new HashMap();
         map.put("content", "我要吐槽");
         map.put("userid", "9999");
@@ -47,7 +47,7 @@ public class SpitApplicationTest {
         //创建连接
         MongoDatabase spitdb = client.getDatabase("spitdb");
         //获取集合
-        MongoCollection<Document> spit = spitdb.getCollection("spit");
+        MongoCollection<Document> spit = spitdb.getCollection("search");
         //查询记录获取文档集合
         FindIterable<Document> documents = spit.find();
         //遍历数据
@@ -70,7 +70,7 @@ public class SpitApplicationTest {
         //创建连接
         MongoDatabase spitdb = client.getDatabase("spitdb");
         //获取集合
-        MongoCollection<Document> spit = spitdb.getCollection("spit");
+        MongoCollection<Document> spit = spitdb.getCollection("search");
 
        // BasicDBObject bson = new BasicDBObject("visits", new BasicDBObject("$gt", 1000));// 构建查询条件
 

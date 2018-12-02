@@ -1,7 +1,7 @@
-package com.tensquare.spit.controller;
+package com.tensquare.search.controller;
 
-import com.tensquare.spit.pojo.Spit;
-import com.tensquare.spit.service.SpitService;
+import com.tensquare.search.pojo.Spit;
+import com.tensquare.search.service.SpitService;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;

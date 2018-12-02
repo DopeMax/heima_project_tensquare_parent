@@ -1,6 +1,6 @@
-package com.tensquare.spit.dao;
+package com.tensquare.search.dao;
 
-import com.tensquare.spit.pojo.Spit;
+import com.tensquare.search.pojo.Spit;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
