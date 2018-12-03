@@ -16,4 +16,6 @@ public class ProductTest {
     public void sendMsg(){
         rabbitTemplate.convertAndSend("tentest","直接模式测试");
     }
+
+
 }

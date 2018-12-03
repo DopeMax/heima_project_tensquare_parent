@@ -21,7 +21,7 @@ import java.util.Date;
  * @author ChenZiMing
  * @created 2018-12-01-21:53.
  */
-@Component
+//@Component
 public class SmsUtil {
     //产品名称:云通信短信API产品,开发者无需替换
     static final String product = "Dysmsapi";

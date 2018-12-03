@@ -15,8 +15,8 @@ import java.util.Map;
  * @author ChenZiMing
  * @created 2018-12-01-21:50.
  */
-@Component
-@RabbitListener(queues = "sms")
+//@Component
+//@RabbitListener(queues = "sms")
 public class SmsListener {
 
     @Autowired
@@ -31,7 +31,7 @@ public class SmsListener {
      *  发送短信
      * @param map
      */
-    @RabbitHandler
+    //@RabbitHandler
     public void sendSms(Map<String,String> map){
         System.out.println("手机号："+map.get("mobile"));
         System.out.println("验证码："+map.get("checkcode"));
