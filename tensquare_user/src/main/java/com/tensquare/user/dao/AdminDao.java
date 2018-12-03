@@ -4,11 +4,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.tensquare.user.pojo.Admin;
+
 /**
  * 数据访问接口
- * @author Administrator
  *
+ * @author Administrator
  */
-public interface AdminDao extends JpaRepository<Admin,String>,JpaSpecificationExecutor<Admin>{
-	
+public interface AdminDao extends JpaRepository<Admin, String>, JpaSpecificationExecutor<Admin> {
+
+    /**
+     * 根据用户名和密码查询
+     *
+     * @param loginname
+     * @return
+     */
+    public Admin findByLoginname(String loginname);
 }
