@@ -1,4 +1,4 @@
-package com.tensquare.jwt;
+package com.tensquare.user.jwt;
 
 /**
  * @author Chen

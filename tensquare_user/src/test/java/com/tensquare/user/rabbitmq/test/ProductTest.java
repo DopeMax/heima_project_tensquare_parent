@@ -1,4 +1,4 @@
-package com.tensquare.rabbitmq.test;
+package com.tensquare.user.rabbitmq.test;
 
 import org.junit.Test;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

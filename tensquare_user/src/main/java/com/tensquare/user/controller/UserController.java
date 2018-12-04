@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.tensquare.user.pojo.Admin;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import com.tensquare.user.pojo.User;
@@ -17,6 +19,8 @@ import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
 import util.JwtUtil;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 控制器层
@@ -110,8 +114,25 @@ public class UserController {
      *
      * @param id
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Result delete(@PathVariable String id) {
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable String id, HttpServletRequest request) {
+        //获取头信息
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null) {
+            return new Result(false, StatusCode.ACCESSERROR, "权限不足");
+        }
+        if (!authHeader.startsWith("Bearer")) {
+            return new Result(false, StatusCode.ACCESSERROR, "权限不足");
+        }
+        //提取token
+        String token = authHeader.substring(7);
+        Claims claims = jwtUtil.parseJWT(token);
+        if (claims == null) {
+            return new Result(false, StatusCode.ACCESSERROR, "权限不足");
+        }
+        if (!"admin".equals(claims.get("roles"))) {
+            return new Result(false, StatusCode.ACCESSERROR, "权限不足");
+        }
         userService.deleteById(id);
         return new Result(true, StatusCode.OK, "删除成功");
     }
@@ -153,6 +174,11 @@ public class UserController {
     public Result login(String mobile, String password) {
         User user = userService.findByMobileAndPassword(mobile, password);
         if (user != null) {
+            //生成token
+            String token = jwtUtil.createJWT(user.getId(), user.getLoginname(), "user");
+            Map map = new HashMap();
+            map.put("token", token);
+            map.put("name", user.getLoginname());
             return new Result(true, StatusCode.OK, "登陆成功");
         } else {
             return new Result(false, StatusCode.LOGINERROR, "用户名或密码错误");

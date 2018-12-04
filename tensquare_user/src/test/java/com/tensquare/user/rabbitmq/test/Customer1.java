@@ -1,4 +1,4 @@
-package com.tensquare.rabbitmq.test;
+package com.tensquare.user.rabbitmq.test;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

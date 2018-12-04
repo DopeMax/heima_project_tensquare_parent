@@ -1,4 +1,4 @@
-package com.tensquare.rabbitmq;
+package com.tensquare.user;
 
 import com.tensquare.user.UserApplication;
 import org.junit.Test;
