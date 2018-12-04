@@ -38,6 +38,8 @@ public class UserController {
     private RedisTemplate redisTemplate;
     @Autowired
     private JwtUtil jwtUtil;
+    @Autowired
+    private HttpServletRequest request;
 
     /**
      * 查询全部数据
@@ -115,23 +117,10 @@ public class UserController {
      * @param id
      */
     @DeleteMapping("/{id}")
-    public Result delete(@PathVariable String id, HttpServletRequest request) {
-        //获取头信息
-        String authHeader = request.getHeader("Authorization");
-        if (authHeader == null) {
-            return new Result(false, StatusCode.ACCESSERROR, "权限不足");
-        }
-        if (!authHeader.startsWith("Bearer")) {
-            return new Result(false, StatusCode.ACCESSERROR, "权限不足");
-        }
-        //提取token
-        String token = authHeader.substring(7);
-        Claims claims = jwtUtil.parseJWT(token);
+    public Result delete(@PathVariable String id) {
+        Claims claims = (Claims) request.getAttribute("admin_claims");
         if (claims == null) {
-            return new Result(false, StatusCode.ACCESSERROR, "权限不足");
-        }
-        if (!"admin".equals(claims.get("roles"))) {
-            return new Result(false, StatusCode.ACCESSERROR, "权限不足");
+            return new Result(false, StatusCode.ACCESSERROR, "无权访问");
         }
         userService.deleteById(id);
         return new Result(true, StatusCode.OK, "删除成功");
@@ -178,8 +167,9 @@ public class UserController {
             String token = jwtUtil.createJWT(user.getId(), user.getLoginname(), "user");
             Map map = new HashMap();
             map.put("token", token);
-            map.put("name", user.getLoginname());
-            return new Result(true, StatusCode.OK, "登陆成功");
+            map.put("name", user.getNickname());
+            map.put("avatar", user.getAvatar());
+            return new Result(true, StatusCode.OK, "登陆成功", map);
         } else {
             return new Result(false, StatusCode.LOGINERROR, "用户名或密码错误");
         }

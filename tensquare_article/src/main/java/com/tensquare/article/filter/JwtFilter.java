@@ -1,4 +1,4 @@
-package com.tensquare.user.filter;
+package com.tensquare.article.filter;
 
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;

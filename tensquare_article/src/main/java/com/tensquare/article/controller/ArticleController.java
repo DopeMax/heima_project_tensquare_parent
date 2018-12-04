@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.tensquare.article.pojo.Comment;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import com.tensquare.article.service.ArticleService;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 控制器层
@@ -28,6 +31,8 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private HttpServletRequest request;
 
     /**
      * 查询全部数据
@@ -81,8 +86,14 @@ public class ArticleController {
      *
      * @param article
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public Result add(@RequestBody Article article) {
+        Claims claims = (Claims) request.getAttribute("user_claims");
+        if (claims == null) {
+            return new Result(false, StatusCode.ACCESSERROR, "无权访问");
+
+        }
+        article.setUserid(claims.getId());
         articleService.add(article);
         return new Result(true, StatusCode.OK, "增加成功");
     }
@@ -104,8 +115,13 @@ public class ArticleController {
      *
      * @param id
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public Result delete(@PathVariable String id) {
+        Claims claims = (Claims) request.getAttribute("user_claims");
+        if (claims == null) {
+            return new Result(false, StatusCode.ACCESSERROR, "无权访问");
+
+        }
         articleService.deleteById(id);
         return new Result(true, StatusCode.OK, "删除成功");
     }
@@ -136,18 +152,26 @@ public class ArticleController {
 
     /**
      * 文章加评论
+     *
      * @param articleId
      * @param comment
      * @return
      */
     @PostMapping("/comment/{articleId}")
     public Result addComment(@PathVariable String articleId, @RequestBody Comment comment) {
+        Claims claims = (Claims) request.getAttribute("user_claims");
+        if (claims == null) {
+            return new Result(false, StatusCode.ACCESSERROR, "无权访问");
+
+        }
+        comment.setUserid(claims.getId());
         articleService.addComment(articleId, comment);
         return new Result(true, StatusCode.OK, "评论成功");
     }
 
     /**
      * 文章删除评论
+     *
      * @param articleId
      * @param commentId
      * @return
