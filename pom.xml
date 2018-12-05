@@ -20,6 +20,7 @@
         <module>tensquare_xyk</module>
         <module>paoding_collect</module>
         <module>tensquare_sms</module>
+        <module>tensquare_eureka</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -77,6 +78,7 @@
             <artifactId>jjwt</artifactId>
             <version>${jjwt.version}</version>
         </dependency>
+
     </dependencies>
     <!-- 上网去下载一些依赖库 snapshot 叫做快照，下载依赖更快 最新的 -->
     <repositories>
@@ -100,6 +102,7 @@
             <id>projectlombok.org</id>
             <url>http://projectlombok.org/mavenrepo</url>
         </repository>
+
     </repositories>
 
     <pluginRepositories>
@@ -120,5 +123,15 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.M9</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

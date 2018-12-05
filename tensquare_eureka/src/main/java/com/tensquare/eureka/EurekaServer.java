@@ -1,16 +1,16 @@
-package com.tensquare.sms;
+package com.tensquare.eureka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author ChenZiMing
- * @created 2018-12-01-21:49.
+ * @author Chen
+ * @created 2018-12-05-21:28.
  */
 @SpringBootApplication
-@EnableEurekaClient
-public class SmsApplication {
+@EnableEurekaServer
+public class EurekaServer {
     public static void main(String[] args) {
-        SpringApplication.run(SmsApplication.class, args);
+        SpringApplication.run(EurekaServer.class,args);
     }
 }

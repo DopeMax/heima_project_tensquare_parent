@@ -7,6 +7,7 @@ import util.IdWorker;
 import util.JwtUtil;
 
 @SpringBootApplication
+@EnableEurekaClient
 public class QaApplication {
 
     public static void main(String[] args) {

@@ -7,6 +7,7 @@ import util.IdWorker;
 
 
 @SpringBootApplication
+@EnableEurekaClient
 public class RecruitApplication {
 
     public static void main(String[] args) {

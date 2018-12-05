@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import util.IdWorker;
 
 @SpringBootApplication
+@EnableEurekaClient
 public class SpitApplication {
 
     public static void main(String[] args) {

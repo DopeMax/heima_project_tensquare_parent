@@ -9,6 +9,7 @@ import util.IdWorker;
  * 基础微服务的启动类
  */
 @SpringBootApplication
+@EnableEurekaClient
 public class BaseApplication {
 
     /**

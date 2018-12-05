@@ -8,6 +8,7 @@ import util.IdWorker;
 
 @SpringBootApplication
 @EnableCaching
+@EnableEurekaClient
 public class GatheringApplication {
 
     public static void main(String[] args) {

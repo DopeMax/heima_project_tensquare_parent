@@ -8,6 +8,7 @@ import util.IdWorker;
 import util.JwtUtil;
 
 @SpringBootApplication
+@EnableEurekaClient
 public class UserApplication {
 
     public static void main(String[] args) {

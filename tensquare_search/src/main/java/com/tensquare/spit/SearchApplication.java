@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import util.IdWorker;
 
 @SpringBootApplication
+@EnableEurekaClient
 public class SearchApplication {
 
 	public static void main(String[] args) {
