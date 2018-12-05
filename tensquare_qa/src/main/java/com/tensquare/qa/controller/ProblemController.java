@@ -1,5 +1,6 @@
 package com.tensquare.qa.controller;
 
+import com.tensquare.qa.client.LabelClient;
 import com.tensquare.qa.pojo.Problem;
 import com.tensquare.qa.service.ProblemService;
 import entity.PageResult;
@@ -27,6 +28,9 @@ public class ProblemController {
     private ProblemService problemService;
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    private LabelClient labelClient;
 
     /**
      * 查询全部数据
@@ -149,5 +153,10 @@ public class ProblemController {
     public Result findWaitListByLabelId(@PathVariable String label, @PathVariable int page, @PathVariable int size) {
         Page<Problem> pageData = problemService.findWaitListByLabelId(label, page, size);
         return new Result(true, StatusCode.OK, "查询成功", new PageResult<Problem>(pageData.getTotalElements(), pageData.getContent()));
+    }
+
+    @GetMapping("/label/labelid")
+    public Result findLabelById(@PathVariable String labelid) {
+        return labelClient.findById(labelid);
     }
 }
