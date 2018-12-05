@@ -42,6 +42,7 @@ public class LabelController {
      */
     @GetMapping(value = "/{id}")
     public Result findById(@PathVariable("id") String id) {
+        System.out.println("No.1");
         Label label = labelService.findById(id);
         return new Result(true, StatusCode.OK, "查询id成功", label);
     }
